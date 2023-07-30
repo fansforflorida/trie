@@ -23,6 +23,7 @@ namespace TrieExample;
 public sealed class Trie
 {
     private readonly Node root = new ();
+    private int nodeCount = 1;
 
     /// <summary>
     /// Gets the number of words contained in the trie.
@@ -56,6 +57,7 @@ public sealed class Trie
             if (node[c] == null)
             {
                 node[c] = new Node();
+                this.nodeCount++;
             }
 
             node = node[c] !;
@@ -107,19 +109,12 @@ public sealed class Trie
     /// <inheritdoc/>
     public override string ToString()
     {
-        return $"{this.Count:N0} words in {Node.Count:N0} nodes";
+        return $"{this.Count:N0} words in {this.nodeCount:N0} nodes";
     }
 
     private sealed class Node
     {
         private readonly Node?[] children = new Node?[26];
-
-        public Node()
-        {
-            Count++;
-        }
-
-        public static int Count { get; private set; }
 
         public bool IsWord { get; set; }
 

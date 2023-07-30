@@ -86,7 +86,6 @@ public class UnitTest1
     public void Count_AddSameWord_ReturnsOne()
     {
         var trie = new Trie();
-
         for (int i = 0; i < 10; i++)
         {
             trie.Add("and");
@@ -101,7 +100,6 @@ public class UnitTest1
     public void Count_AfterAdd_ReturnsOne()
     {
         var trie = new Trie();
-
         trie.Add("and");
 
         int actual = trie.Count;
@@ -117,5 +115,18 @@ public class UnitTest1
         int actual = trie.Count;
 
         Assert.AreEqual((int)0, actual);
+    }
+
+    [TestMethod]
+    public void ToString_ThreeWords_FourNodes()
+    {
+        var trie = new Trie();
+        trie.Add("a");
+        trie.Add("an");
+        trie.Add("and");
+
+        string actual = trie.ToString();
+
+        Assert.AreEqual("3 words in 4 nodes", actual);
     }
 }
