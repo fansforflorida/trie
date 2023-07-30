@@ -37,7 +37,18 @@ public sealed class Trie
     /// <exception cref="ArgumentException">Argument is empty or contains a non letter character.</exception>
     public void Add(string word)
     {
-        char[] chars = ToUpperCharArray(word);
+        ArgumentException.ThrowIfNullOrEmpty(word);
+
+        char[] chars = word.ToUpper().ToCharArray();
+
+        foreach (char c in chars)
+        {
+            if (c < 'A' || c > 'Z')
+            {
+                throw new ArgumentException("contains non-letter characters", nameof(word));
+            }
+        }
+
         Node node = this.root;
 
         foreach (char c in chars)
@@ -66,12 +77,23 @@ public sealed class Trie
     /// <exception cref="ArgumentException">Argument is empty or contains a non letter character.</exception>
     public bool Contains(string word)
     {
-        char[] chars = ToUpperCharArray(word);
+        if (string.IsNullOrEmpty(word))
+        {
+            return false;
+        }
+
+        char[] chars = word.ToCharArray();
         Node node = this.root;
 
-        foreach (char c in chars)
+        for (int i = 0; i < chars.Length; i++)
         {
-            if (node[c] == null)
+            char c = char.ToUpper(chars[i]);
+
+            if (c < 'A' || c > 'Z')
+            {
+                return false;
+            }
+            else if (node[c] == null)
             {
                 return false;
             }
@@ -85,24 +107,7 @@ public sealed class Trie
     /// <inheritdoc/>
     public override string ToString()
     {
-        return $"{this.Count} words in {Node.Count} nodes";
-    }
-
-    private static char[] ToUpperCharArray(string word)
-    {
-        ArgumentException.ThrowIfNullOrEmpty(word);
-
-        char[] chars = word.ToUpper().ToCharArray();
-
-        foreach (char c in chars)
-        {
-            if (c < 'A' || c > 'Z')
-            {
-                throw new ArgumentException("contains non-letter characters", nameof(word));
-            }
-        }
-
-        return chars;
+        return $"{this.Count:N0} words in {Node.Count:N0} nodes";
     }
 
     private sealed class Node

@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trie", "Trie\Trie.csproj", "{10DFA876-DF81-486C-A992-6535DDC29496}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trie", "Trie\Trie.csproj", "{10DFA876-DF81-486C-A992-6535DDC29496}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrieTest", "TrieTest\TrieTest.csproj", "{55EF7506-20D0-411B-82E4-A1A5BD05061F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrieTest", "TrieTest\TrieTest.csproj", "{55EF7506-20D0-411B-82E4-A1A5BD05061F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{10DFA876-DF81-486C-A992-6535DDC29496} = {10DFA876-DF81-486C-A992-6535DDC29496}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpellCheck", "SpellCheck\SpellCheck.csproj", "{89E05F9B-07E5-45BA-BCE5-2888E8D45895}"
 	ProjectSection(ProjectDependencies) = postProject
 		{10DFA876-DF81-486C-A992-6535DDC29496} = {10DFA876-DF81-486C-A992-6535DDC29496}
 	EndProjectSection
@@ -24,6 +29,10 @@ Global
 		{55EF7506-20D0-411B-82E4-A1A5BD05061F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55EF7506-20D0-411B-82E4-A1A5BD05061F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55EF7506-20D0-411B-82E4-A1A5BD05061F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89E05F9B-07E5-45BA-BCE5-2888E8D45895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89E05F9B-07E5-45BA-BCE5-2888E8D45895}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89E05F9B-07E5-45BA-BCE5-2888E8D45895}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89E05F9B-07E5-45BA-BCE5-2888E8D45895}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,7 +6,84 @@ using TrieExample;
 public class UnitTest1
 {
     [TestMethod]
-    public void TestAddIdempotent()
+    public void Add_EmptyString_ThrowsArgumentException()
+    {
+        var trie = new Trie();
+
+        void addEmptyString() => trie.Add(string.Empty);
+
+        Assert.ThrowsException<ArgumentException>(addEmptyString);
+    }
+
+    [TestMethod]
+    public void Add_Null_ThrowsArgumentNullException()
+    {
+        var trie = new Trie();
+
+        void addNull() => trie.Add(null);
+
+        Assert.ThrowsException<ArgumentNullException>(addNull);
+    }
+
+    [TestMethod]
+    public void Add_Number_ThrowsArgumentException()
+    {
+        var trie = new Trie();
+        string number = "0";
+
+        void addNumber() => trie.Add(number);
+
+        Assert.ThrowsException<ArgumentException>(addNumber);
+    }
+
+    [TestMethod]
+    public void Add_Space_ThrowsArgumentException()
+    {
+        var trie = new Trie();
+
+        void addSpace() => trie.Add(" ");
+
+        Assert.ThrowsException<ArgumentException>(addSpace);
+    }
+
+    [TestMethod]
+    public void Contains_KnownWord_ReturnsTrue()
+    {
+        var trie = new Trie();
+        trie.Add("and");
+        trie.Add("but");
+        trie.Add("or");
+
+        bool actual = trie.Contains("and");
+
+        Assert.IsTrue(actual);
+    }
+
+    [TestMethod]
+    public void Contains_NewTrie_ReturnsFalse()
+    {
+        var trie = new Trie();
+
+        bool actual = trie.Contains("and");
+
+        Assert.IsFalse(actual);
+    }
+
+    [TestMethod]
+    public void Contains_UnknownWord_ReturnsFalse()
+    {
+        var trie = new Trie();
+        trie.Add("and");
+        trie.Add("but");
+        trie.Add("or");
+
+        bool actual = trie.Contains("nor");
+
+        Assert.IsFalse(actual);
+    }
+
+    [TestMethod]
+    public void Count_AddSameWord_ReturnsOne()
     {
         var trie = new Trie();
 
@@ -15,48 +92,30 @@ public class UnitTest1
             trie.Add("and");
         }
 
-        Assert.AreEqual(1, trie.Count);
+        int actual = trie.Count;
+
+        Assert.AreEqual((int)1, actual);
     }
 
     [TestMethod]
-    public void TestContainsFalse()
-    {
-        var trie = new Trie();
-
-        Assert.IsFalse(trie.Contains("and"));
-        Assert.IsFalse(trie.Contains("but"));
-        Assert.IsFalse(trie.Contains("or"));
-
-        trie.Add("and");
-        trie.Add("but");
-        trie.Add("or");
-
-        Assert.IsFalse(trie.Contains("nor"));
-    }
-
-    [TestMethod]
-    public void TestContainsTrue()
+    public void Count_AfterAdd_ReturnsOne()
     {
         var trie = new Trie();
 
         trie.Add("and");
-        trie.Add("but");
-        trie.Add("or");
 
-        Assert.IsTrue(trie.Contains("and"));
-        Assert.IsTrue(trie.Contains("but"));
-        Assert.IsTrue(trie.Contains("or"));
+        int actual = trie.Count;
+
+        Assert.AreEqual((int)1, actual);
     }
 
     [TestMethod]
-    public void TestCount()
+    public void Count_NewTrie_ReturnsZero()
     {
         var trie = new Trie();
 
-        Assert.AreEqual((int)0, trie.Count);
+        int actual = trie.Count;
 
-        trie.Add("and");
-
-        Assert.AreEqual((int)1, trie.Count);
+        Assert.AreEqual((int)0, actual);
     }
 }
