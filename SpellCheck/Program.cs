@@ -16,6 +16,7 @@ string text = "Despite the constant negative press covfefe";
 
 List<string> unknown = text.Split(punctuation)
     .Where(x => !trie.Contains(x))
+    .Distinct()
     .ToList();
 
 Console.WriteLine($"Unknown words:\n{string.Join('\n', unknown)}");
