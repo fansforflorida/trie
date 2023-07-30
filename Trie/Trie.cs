@@ -84,13 +84,11 @@ public sealed class Trie
             return false;
         }
 
-        char[] chars = word.ToCharArray();
+        char[] chars = word.ToUpper().ToCharArray();
         Node node = this.root;
 
-        for (int i = 0; i < chars.Length; i++)
+        foreach (char c in chars)
         {
-            char c = char.ToUpper(chars[i]);
-
             if (c < 'A' || c > 'Z')
             {
                 return false;

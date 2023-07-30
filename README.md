@@ -5,3 +5,14 @@ A trie is efficient for storing strings that have a common prefix. For example, 
 
 ![trie](assets/trie.png)
 
+As a demonstration, I implemented a simple spell checker app. It loads a list of 10,000 words, prints some statistics about the trie, and spell checks Trump's infamous "covfefe" tweet.
+
+The output looks like this:
+
+```
+10,000 words in 24,179 nodes
+Unknown words:
+covfefe
+```
+
+Admittedly, my implementation is not very efficient. However, I was more interested in making the code more readable. For example, it recalculates the child index every time it needs it. Also, the leaf node of a trie is always empty, so one optimization is to reuse a static leaf node.
