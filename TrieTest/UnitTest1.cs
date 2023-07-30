@@ -47,6 +47,16 @@ public class UnitTest1
     }
 
     [TestMethod]
+    public void Contains_EmptyString_ReturnsFalse()
+    {
+        var trie = new Trie();
+
+        bool actual = trie.Contains(string.Empty);
+
+        Assert.IsFalse(actual);
+    }
+
+    [TestMethod]
     public void Contains_KnownWord_ReturnsTrue()
     {
         var trie = new Trie();
@@ -65,6 +75,28 @@ public class UnitTest1
         var trie = new Trie();
 
         bool actual = trie.Contains("and");
+
+        Assert.IsFalse(actual);
+    }
+
+    [TestMethod]
+    public void Contains_Null_ReturnsFalse()
+    {
+        var trie = new Trie();
+
+        bool actual = trie.Contains(null);
+
+        Assert.IsFalse(actual);
+    }
+
+    [TestMethod]
+    public void Contains_Number_ReturnsFalse()
+    {
+        var trie = new Trie();
+        trie.Add("and");
+        string number = "0";
+
+        bool actual = trie.Contains(number);
 
         Assert.IsFalse(actual);
     }
