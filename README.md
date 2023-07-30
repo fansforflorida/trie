@@ -3,5 +3,5 @@ The trie (pronounced like "try," even though it is derived from re**trie**val) d
 
 A trie is efficient for storing strings that have a common prefix. For example, the words A, AN, and AND would be stored in a trie that looks like this:
 
-![trie](assets\trie.png)
+![trie](assets/trie.png)
 
